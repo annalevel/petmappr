@@ -1,0 +1,105 @@
+html, body {
+  margin: 0 auto;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content-wrapper {
+  margin: 0 auto;
+  flex: 1 0 auto;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  background-color: #FFFAFF;
+  color: #050401;
+  text-align: left;
+}
+
+#google-map {
+  height: 600px;
+  width: 900px;
+}
+
+header {
+  color: #303036;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  flex-direction: column;
+  align-items: center;
+}
+
+header, footer {
+  flex: 0 0 auto;
+}
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #FC5130;
+}
+
+h2 {
+  color: #1D7291;
+}
+
+form.pet-form {
+  width: 45%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  margin: 0;
+  border: 2px solid #30BCED;
+  padding: 1em;
+}
+
+input, select, button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  padding: .5em;
+  border-radius: 2px;
+  font-size: inherit;
+}
+
+input, select {
+  border: 1px solid #30BCED;
+}
+
+button {
+  background-color: #FC5130;
+  font-weight: bold;
+  border: 0;
+  color: #303036;
+}
+
+footer {
+  background-color: #82ceea;
+  font-size: .8rem;
+  padding: 2em;
+}
+
+@media screen and (min-width: 801px) {
+  header {
+    padding: 0 5em;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  form {
+    width: 45%;
+  }
+}
