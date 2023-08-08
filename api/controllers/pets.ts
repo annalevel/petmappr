@@ -6,21 +6,23 @@ Get pets matching a specified species, gender, and location
 */
 export const getPets = async(req: Request, res: Response) => {
     try {
-        const userParameters = req.query;
-        const sanitizedParameters: any = {};
+        const userParams = req.query;
+        const cleanParams: any = {};
 
-        if (userParameters.species == "dog" || userParameters.species == "cat") {
-          sanitizedParameters.type = userParameters.species;
+        if (userParams.species == "dog" || userParams.species == "cat") {
+          cleanParams.type = userParams.species;
         }
-        if (userParameters.gender == "male" || userParameters.gender == "female") {
-          sanitizedParameters.gender = userParameters.gender;
+        if (userParams.gender == "male" || userParams.gender == "female") {
+          cleanParams.gender = userParams.gender;
         }
-        if (userParameters.location !== undefined && userParameters.location !== null) {
-          sanitizedParameters.location = userParameters.location;
+        if (userParams.location !== undefined && userParams.location !== null) {
+          if (userParams.location.toString().match(/^-?[\d]*(\.[\d]*)?,-?[\d]*(\.[\d]*)?$/)) {
+            cleanParams.location = userParams.location.toString();
+          }
         }
-
+        
         const { data } = await axios.get(`${process.env.PETFINDER_API_BASE_URL}/animals`, {
-          params: sanitizedParameters
+          params: cleanParams
         });
     
         res.json(data);
