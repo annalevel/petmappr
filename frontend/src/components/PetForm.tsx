@@ -9,6 +9,7 @@ export default function PetForm() {
     const responseBody: formDataType = {};
 
     const handleSubmit = () => {
+        context.setIsLoading(true);
         context.setHasError(false);
         context.setErrorMessage("");
 
@@ -33,12 +34,14 @@ export default function PetForm() {
                     .then(function(completePetPromises) {
                         context.setVisiblePets(completePetPromises);
                         context.setShouldShowMap(true);
+                        context.setIsLoading(false);
                     })
                     .catch();
             })
             .catch(error => {
                 context.setErrorMessage(error.message);
                 context.setHasError(true);
+                context.setIsLoading(false);
             });
     }
 

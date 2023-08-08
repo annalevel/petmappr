@@ -2,6 +2,8 @@ import React from 'react';
 import HomeContextProps from '../interfaces/HomeContextProps';
 
 const HomeContext = React.createContext<HomeContextProps>({
+    isLoading: false,
+    setIsLoading: () => {},
     hasError: false,
     setHasError: () => {},
     errorMessage: "",

@@ -5,6 +5,7 @@ import { useState } from "react";
 import Pet from "../interfaces/Pet";
 
 export default function Home() {
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ hasError, setHasError ] = useState<boolean>(false);
     const [ errorMessage, setErrorMessage ] = useState<string>("");
     const [ shouldShowMap, setShouldShowMap ] = useState<boolean>(false);
@@ -12,6 +13,8 @@ export default function Home() {
 
     return (
         <HomeContext.Provider value={{
+            isLoading: isLoading,
+            setIsLoading: setIsLoading,
             hasError: hasError,
             setHasError: setHasError,
             errorMessage: errorMessage,
@@ -22,10 +25,17 @@ export default function Home() {
             setVisiblePets: setVisiblePets,
             }}>
             <PetForm />
-            {shouldShowMap && !hasError ? <GoogleMap /> : null}
             {hasError
                 ? <p>Error: {errorMessage}</p>
-                : <p>{visiblePets.map((p: Pet) => <li key={p.id}>{p.id}, {p.name}, {p.species}: {p.location?.lat}, {p.location?.lng}</li>)}</p>
+                : isLoading
+                    ? <p>Loading...</p>
+                    : shouldShowMap
+                        ? 
+                            <section>
+                                <GoogleMap />
+                                <ul>{visiblePets.map((p: Pet) => <li key={p.id}>{p.id}, {p.name}, {p.species}: {p.location?.lat}, {p.location?.lng}</li>)}</ul>
+                            </section>
+                        : null
             }
         </HomeContext.Provider>
     );

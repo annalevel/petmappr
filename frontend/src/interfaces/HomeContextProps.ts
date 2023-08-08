@@ -1,6 +1,8 @@
 import Pet from "./Pet";
 
 export default interface HomeContextProps {
+    isLoading: boolean;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     hasError: boolean;
     setHasError: React.Dispatch<React.SetStateAction<boolean>>;
     errorMessage: string;
