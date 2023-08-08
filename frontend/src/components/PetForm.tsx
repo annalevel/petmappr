@@ -9,6 +9,9 @@ export default function PetForm() {
     const responseBody: formDataType = {};
 
     const handleSubmit = () => {
+        context.setHasError(false);
+        context.setErrorMessage("");
+
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/pets`, {
             params: responseBody
         })
@@ -29,13 +32,13 @@ export default function PetForm() {
                 Promise.all(pets)
                     .then(function(completePetPromises) {
                         context.setVisiblePets(completePetPromises);
+                        context.setShouldShowMap(true);
                     })
                     .catch();
-                context.setShouldShowMap(true);
             })
             .catch(error => {
-                console.log(error);
-                context.setShouldShowMap(true);
+                context.setErrorMessage(error.message);
+                context.setHasError(true);
             });
     }
 
