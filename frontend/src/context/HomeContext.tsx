@@ -12,5 +12,7 @@ const HomeContext = React.createContext<HomeContextProps>({
     setShouldShowMap: () => {},
     visiblePets: [],
     setVisiblePets: () => {},
+    hasGoogleAPILoaded: false,
+    setHasGoogleAPILoaded: () => {}
 });
 export default HomeContext;

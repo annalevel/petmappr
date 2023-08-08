@@ -15,7 +15,7 @@ export const getPets = async(req: Request, res: Response) => {
         if (userParameters.gender == "male" || userParameters.gender == "female") {
           sanitizedParameters.gender = userParameters.gender;
         }
-        if (userParameters.location !== null && userParameters.location !== undefined) {
+        if (userParameters.location !== undefined && userParameters.location !== null) {
           sanitizedParameters.location = userParameters.location;
         }
 

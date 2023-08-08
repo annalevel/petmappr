@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import HomeContext from "../context/HomeContext";
 import axios from "axios";
 import Pet from "../interfaces/Pet";
@@ -8,6 +8,7 @@ export default function PetForm() {
     const context = useContext(HomeContext);
     interface formDataType {[key:string]: FormDataEntryValue}
     const responseBody: formDataType = {};
+    const [ curLocation, setCurLocation] = useState<google.maps.places.PlaceResult | undefined>();
 
     const handleSubmit = () => {
         context.setIsLoading(true);
@@ -66,6 +67,10 @@ export default function PetForm() {
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
                 event.preventDefault();
                 const formData = new FormData(event.currentTarget as HTMLFormElement);
+                if (typeof curLocation !== "undefined") {
+                    formData.append("location", `${curLocation?.geometry?.location?.lat()},${curLocation?.geometry?.location?.lng()}`);
+                }
+
                 formData.forEach((value, property:string) => responseBody[property] = value);
                 handleSubmit();
             }}
@@ -81,7 +86,7 @@ export default function PetForm() {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
-            <LocationInput />
+            <LocationInput onLocationChange={setCurLocation} />
             <input type="submit" value="Go!" />
         </form>
         </>

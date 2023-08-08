@@ -11,4 +11,6 @@ export default interface HomeContextProps {
     setShouldShowMap: React.Dispatch<React.SetStateAction<boolean>>;
     visiblePets: Pet[];
     setVisiblePets: React.Dispatch<React.SetStateAction<Pet[]>>;
+    hasGoogleAPILoaded: boolean;
+    setHasGoogleAPILoaded: React.Dispatch<React.SetStateAction<boolean>>;
 }
