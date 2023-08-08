@@ -2,6 +2,7 @@ import { useContext } from "react";
 import HomeContext from "../context/HomeContext";
 import axios from "axios";
 import Pet from "../interfaces/Pet";
+import LocationInput from "./LocationInput";
 
 export default function PetForm() {
     const context = useContext(HomeContext);
@@ -80,6 +81,7 @@ export default function PetForm() {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
+            <LocationInput />
             <input type="submit" value="Go!" />
         </form>
         </>
