@@ -16,8 +16,9 @@ export default function GoogleMap() {
     });
 
     const initMap = () => {
-        let latitude = 34.05;
-        let longitude = -118.24;
+        // Approximate center of continental USA
+        let latitude = 37.0902;
+        let longitude = -95.7129;
         const newMap = new window.google.maps.Map(
             document.getElementById("google-map")!,
             {
@@ -46,19 +47,24 @@ export default function GoogleMap() {
     useEffect(() => {
         if (map) {
             const newMarkers: google.maps.Marker[] = [];
+            const bounds = new google.maps.LatLngBounds();
+
             context.visiblePets.forEach(pet => {
                 if (pet.location.lat !== null && pet.location.lng !== null) {
+                    const petPosition = new google.maps.LatLng(pet.location.lat, pet.location.lng);
                     const marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(pet.location.lat, pet.location.lng),
+                        position: petPosition,
                         title: pet.name,
                         map: map,
                     });
+                    bounds.extend(petPosition);
     
                     marker.addListener("click", handleMarkerClick(pet, marker));
                     newMarkers.push(marker);
                 }
             });
-    
+            
+            map.fitBounds(bounds);
             setMarkers(prevMarkers => {
                 prevMarkers.forEach(prevMarker => {
                     prevMarker.setVisible(false);
