@@ -37,7 +37,7 @@ export default function LocationInput({ onLocationChange }: { onLocationChange: 
     return (
         <>
 
-            <input type="text" value={curInputValue} onChange={handleChange} ref={inputRef as React.RefObject<HTMLInputElement>} />
+            <input type="text" name="location" id="location" value={curInputValue} onChange={handleChange} ref={inputRef as React.RefObject<HTMLInputElement>} />
         </>
     );
 }

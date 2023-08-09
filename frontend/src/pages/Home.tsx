@@ -4,6 +4,7 @@ import HomeContext from "../context/HomeContext";
 import { useEffect, useState } from "react";
 import Pet from "../interfaces/Pet";
 import { Helmet } from "react-helmet-async";
+import ResultsDisplay from "../components/ResultsDisplay";
 
 export default function Home() {
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
@@ -65,18 +66,10 @@ export default function Home() {
             setPetInfoPopup: setPetInfoPopup,
             }}>
             <PetForm />
-            <GoogleMap />
-            {hasError
-                ? <p>Error: {errorMessage}</p>
-                : isLoading
-                    ? <p>Loading...</p>
-                    : shouldShowMap
-                        ? 
-                            <section>
-                                <ul>{visiblePets.map((p: Pet) => <li key={p.id}>{p.id}, {p.name}, {p.species}: {p.location?.lat}, {p.location?.lng}</li>)}</ul>
-                            </section>
-                        : null
-            }
+            <section id="results-wrapper">
+                <GoogleMap />
+                <ResultsDisplay />
+            </section>
             <Helmet>
                 <script
                     type="text/javascript"

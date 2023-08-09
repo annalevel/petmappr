@@ -62,33 +62,41 @@ export default function PetForm() {
     }
 
     return (
-        <>
-        <form className="pet-form"
-            onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
-                event.preventDefault();
-                const formData = new FormData(event.currentTarget as HTMLFormElement);
-                if (typeof curLocation !== "undefined") {
-                    formData.append("location", `${curLocation?.geometry?.location?.lat()},${curLocation?.geometry?.location?.lng()}`);
-                }
+        <section id="pet-form-wrapper">
+            <form className="pet-form"
+                onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+                    event.preventDefault();
+                    const formData = new FormData(event.currentTarget as HTMLFormElement);
+                    if (typeof curLocation !== "undefined") {
+                        formData.append("location", `${curLocation?.geometry?.location?.lat()},${curLocation?.geometry?.location?.lng()}`);
+                    }
 
-                formData.forEach((value, property:string) => responseBody[property] = value);
-                handleSubmit();
-            }}
-        >
-            <label htmlFor="species">Species</label>
-            <select name="species" id="species">
-                <option value="any">Any</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-            </select>
-            <select name="gender" id="gender">
-                <option value="any">Any</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-            <LocationInput onLocationChange={setCurLocation} />
-            <input type="submit" value="Go!" />
-        </form>
-        </>
+                    formData.forEach((value, property:string) => responseBody[property] = value);
+                    handleSubmit();
+                }}
+            >
+                <fieldset>
+                    <label htmlFor="species">Species</label>
+                    <select name="species" id="species">
+                        <option value="any">Any</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="gender">Gender</label>
+                    <select name="gender" id="gender">
+                        <option value="any">Any</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="location">Location</label>
+                    <LocationInput onLocationChange={setCurLocation} />
+                </fieldset>
+                <input type="submit" id="pet-form-submit-button" value="Go!" />
+            </form>
+        </section>
     );
 }
