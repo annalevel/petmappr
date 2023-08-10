@@ -1,6 +1,6 @@
 import React from "react";
 import { HelmetProvider } from "react-helmet-async";
-import './App.css';
+import './styles/App.css';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import { routes } from "./AppRoutes";

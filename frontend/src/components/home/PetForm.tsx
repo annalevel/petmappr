@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
-import HomeContext from "../context/HomeContext";
+import HomeContext from "../../context/HomeContext";
 import axios from "axios";
-import Pet from "../interfaces/Pet";
+import Pet from "../../interfaces/Pet";
 import LocationInput from "./LocationInput";
 
 export default function PetForm() {

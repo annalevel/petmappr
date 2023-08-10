@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import HomeContext from "../context/HomeContext"
-import Pet from "../interfaces/Pet";
-import "./ResultsDisplay.css";
+import HomeContext from "../../context/HomeContext"
+import Pet from "../../interfaces/Pet";
+import "../../styles/loader.css";
 
 export default function ResultsDisplay() {
     const context = useContext(HomeContext);

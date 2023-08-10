@@ -1,10 +1,10 @@
-import GoogleMap from "../components/GoogleMap";
-import PetForm from "../components/PetForm";
+import GoogleMap from "../components/home/GoogleMap";
+import PetForm from "../components/home/PetForm";
 import HomeContext from "../context/HomeContext";
 import { useEffect, useState } from "react";
 import Pet from "../interfaces/Pet";
 import { Helmet } from "react-helmet-async";
-import ResultsDisplay from "../components/ResultsDisplay";
+import ResultsDisplay from "../components/home/ResultsDisplay";
 
 export default function Home() {
     // Status can be initial (ready to submit but no display), loading, error, or displaying

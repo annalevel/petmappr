@@ -1,4 +1,4 @@
-import Pet from "../interfaces/Pet";
+import Pet from "../../interfaces/Pet";
 
 export default function PetInfoWindowContent(pet: Pet): string {
     const windowContent = ` \

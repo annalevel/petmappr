@@ -1,7 +1,7 @@
 import { createRef, useCallback, useContext, useEffect, useState } from "react";
-import HomeContext from "../context/HomeContext";
+import HomeContext from "../../context/HomeContext";
 import PetInfoWindowContent from "./PetInfoWindowContent";
-import Pet from "../interfaces/Pet";
+import Pet from "../../interfaces/Pet";
 
 export default function GoogleMap() {
     const context = useContext(HomeContext);

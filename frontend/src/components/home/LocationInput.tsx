@@ -1,5 +1,5 @@
 import { useRef, useEffect, useContext, useState } from "react";
-import HomeContext from "../context/HomeContext";
+import HomeContext from "../../context/HomeContext";
 
 export default function LocationInput({ onLocationChange }: { onLocationChange: React.Dispatch<React.SetStateAction<google.maps.places.PlaceResult | undefined>> }) {
     const context = useContext(HomeContext);
