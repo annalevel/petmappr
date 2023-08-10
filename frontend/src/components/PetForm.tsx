@@ -11,9 +11,7 @@ export default function PetForm() {
     const [ curLocation, setCurLocation] = useState<google.maps.places.PlaceResult | undefined>();
 
     const handleSubmit = () => {
-        context.setIsLoading(true);
-        context.setHasError(false);
-        context.setErrorMessage("");
+        context.setStatus("loading");
 
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/pets`, {
             params: responseBody
@@ -35,15 +33,13 @@ export default function PetForm() {
                 Promise.all(pets)
                     .then(function(completePetPromises) {
                         context.setVisiblePets(completePetPromises);
-                        context.setShouldShowMap(true);
-                        context.setIsLoading(false);
+                        context.setStatus("displaying");
                     })
                     .catch();
             })
             .catch(error => {
                 context.setErrorMessage(error.message);
-                context.setHasError(true);
-                context.setIsLoading(false);
+                context.setStatus("error");
             });
     }
 
@@ -67,11 +63,17 @@ export default function PetForm() {
                 onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
                     event.preventDefault();
                     const formData = new FormData(event.currentTarget as HTMLFormElement);
-                    if (typeof curLocation !== "undefined") {
-                        formData.append("location", `${curLocation?.geometry?.location?.lat()},${curLocation?.geometry?.location?.lng()}`);
-                    }
 
-                    formData.forEach((value, property:string) => responseBody[property] = value);
+                    formData.forEach((value, property:string) => {
+                        if (property === "location") {
+                            if (typeof curLocation !== "undefined") {
+                                responseBody[property] = `${curLocation?.geometry?.location?.lat()},${curLocation?.geometry?.location?.lng()}`;
+                            }
+                        } else {
+                            responseBody[property] = value;
+                        }
+                    });
+                    
                     handleSubmit();
                 }}
             >

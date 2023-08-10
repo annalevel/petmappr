@@ -7,10 +7,9 @@ import { Helmet } from "react-helmet-async";
 import ResultsDisplay from "../components/ResultsDisplay";
 
 export default function Home() {
-    const [ isLoading, setIsLoading ] = useState<boolean>(false);
-    const [ hasError, setHasError ] = useState<boolean>(false);
+    // Status can be initial (ready to submit but no display), loading, error, or displaying
+    const [ status, setStatus ] = useState<string>("initial");
     const [ errorMessage, setErrorMessage ] = useState<string>("");
-    const [ shouldShowMap, setShouldShowMap ] = useState<boolean>(false);
     const [ visiblePets, setVisiblePets ] = useState<Pet[]>([]);
     const [ map, setMap] = useState<google.maps.Map | null>(null);
     const [ petInfoPopup, setPetInfoPopup ] = useState<google.maps.InfoWindow | null>(null);
@@ -49,14 +48,10 @@ export default function Home() {
     
     return (
         <HomeContext.Provider value={{
-            isLoading: isLoading,
-            setIsLoading: setIsLoading,
-            hasError: hasError,
-            setHasError: setHasError,
+            status: status,
+            setStatus: setStatus,
             errorMessage: errorMessage,
             setErrorMessage: setErrorMessage,
-            shouldShowMap: shouldShowMap,
-            setShouldShowMap: setShouldShowMap,
             visiblePets: visiblePets,
             setVisiblePets: setVisiblePets,
             hasGoogleAPILoaded: hasGoogleAPILoaded,

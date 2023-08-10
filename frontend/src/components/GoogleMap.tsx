@@ -55,7 +55,7 @@ export default function GoogleMap() {
             <div
                 id="google-map"
                 ref={mapRef as React.RefObject<HTMLDivElement>}
-                style={{ display: context.shouldShowMap && !context.hasError && !context.isLoading ? "block" : "none" }}
+                style={{ display: context.status == 'displaying' ? "block" : "none" }}
                 />
         </>
     );

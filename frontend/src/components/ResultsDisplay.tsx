@@ -6,7 +6,7 @@ import "./ResultsDisplay.css";
 export default function ResultsDisplay() {
     const context = useContext(HomeContext);
     
-    if (context.hasError) {
+    if (context.status == "error") {
         return (
             <section className="error">
                 Error: {context.errorMessage}
@@ -14,7 +14,7 @@ export default function ResultsDisplay() {
         );
     }
     
-    if (context.isLoading) {
+    if (context.status == "loading") {
         return (
             <section className="loading">
                 <span className="loader"></span>
@@ -22,7 +22,7 @@ export default function ResultsDisplay() {
         );
     }
 
-    if (context.shouldShowMap) {
+    if (context.status == "displaying") {
         return (
             <section className="results">
                 <ul>
